@@ -10,12 +10,11 @@ exports.nodelist = async(req, res) => {
 
   console.log('Retrieving list of nodes');
   const snapshot = await db.collection(`netprobe`)
-    .limit(10)
-    .get();
+    .listDocuments();
 
   let data = [];
   snapshot.forEach(doc => {
-    data.push(doc.data());
+    data.push(doc.id);
   });
 
   return res.status(200).send(data);
