@@ -15,5 +15,8 @@ jobs:
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: nodelist
-          runtime: nodejs10
+          runtime: nodejs12
           credentials: ${{ secrets.gcp_credentials }}
+
+      - name: test
+        run: curl "${{ steps.deploy.outputs.url }}"
